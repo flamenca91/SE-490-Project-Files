@@ -1,0 +1,46 @@
+import xlwings as xw
+
+import docx
+from docx import Document
+
+
+excelFile = xw.Book()               #Creates an empty excel file
+excelFile.save('data1.xlsx')        #Saves that excel file as "data1"
+
+#wb = xw.Book('data.xlsx')
+#excelFile = xw.Book('data.xlsx')
+
+ws1 = excelFile.sheets['Sheet1'] #creates object called ws1 and points it to the excelFile sheet
+
+#ws3 = excelFile.sheets[0]
+#ws2 = excelFile.sheets['Sheet2']
+#ws3 = excelFile.sheets['Sheet3']
+#print(ws1.name)
+#print(ws2.name)
+#print(ws3.name)
+#ws1.range('A1').value = 'Hello there'
+
+ws1.range('A2:A20').value = 'Jan'
+#writes my name on the cells from A2:A20
+#Note: :(colon) produces one reference to all the cells between two references, including the two references.
+# example'A2:A20'
+
+ws1.range('A2').value = 'Haug'  #Adds the string "Haug" to A2
+
+
+
+
+document = Document()                                #Creates a new word document
+paragraph = document.add_paragraph('python is cool') #Creates opbject "paragraph" and adds it to the document
+document.save('test3.docx')
+
+doc = docx.Document('test2.docx')
+
+print(doc.paragraphs[0].text)
+print(doc.paragraphs[1].text)
+ws1.range('A1').value = doc.paragraphs[4].text
+
+
+#document2 = Document()
+#paragraph2 = document.add_paragraph('python is nice')
+#document.save('test4.docx')
