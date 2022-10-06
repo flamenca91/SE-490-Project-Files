@@ -1,0 +1,29 @@
+from docx import Document
+
+product = "TARGEST"
+coFounder1 = "Jan William Haug"
+coFounder2 = "Adrian Bernardino"
+coFounder3 = "Stephania Rey"
+save_filename = product + ".docx"
+
+
+document = Document('test5.docx') #object  "document" points to the test5 word document provided
+
+#check if there is a keyword that you are looking for and if it is, it will replace with the name
+def find_replace(paragraph_keyword, draft_keyword, paragraph):
+    if paragraph_keyword in paragraph.text:
+        print("found tag:", draft_keyword) #prints out "found tag:" whenever a tag is found
+        paragraph.text = paragraph.text.replace(paragraph_keyword,draft_keyword)
+
+
+for paragraph in document.paragraphs: #going in the document.paragraphs using for loop.
+    find_replace("product", product, paragraph)
+    find_replace("Co_founder1", coFounder1, paragraph)
+    find_replace("Co_founder2", coFounder2, paragraph)
+    find_replace("Co_founder3", coFounder3, paragraph)
+
+    #print(paragraph.text)
+
+
+
+document.save(save_filename)
